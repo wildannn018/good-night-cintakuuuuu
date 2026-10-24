@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Tidur Sayangku ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Nunito', sans-serif;
+      background: #0B0E14;
+      color: #F3F4F6;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 1s ease;
+    }
+
+    /* Background Night Sky */
+    .sky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 30%, #1a1c2e 0%, #0b0e14 80%);
+      transition: opacity 1s ease;
+    }
+
+    .moon {
+      position: absolute;
+      top: 10%;
+      right: 12%;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #FFFDE7;
+      box-shadow: 0 0 40px rgba(255, 253, 231, 0.4), inset -10px -10px 0 0 #FBC02D;
+      animation: floatMoon 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatMoon {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* Card Container */
+    .container {
+      position: relative;
+      z-index: 10;
+      width: 90%;
+      max-width: 440px;
+      padding: 2.5rem 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+
+    .heart-icon {
+      font-size: 3.5rem;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+      cursor: pointer;
+      filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.6));
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+      100% { transform: scale(1); }
+    }
+
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 2.5rem;
+      margin: 0.8rem 0 0.5rem;
+      color: #F472B6;
+      text-shadow: 0 0 12px rgba(244, 114, 182, 0.3);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #9CA3AF;
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .message-box {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 1.2rem;
+      border-radius: 18px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #E5E7EB;
+      margin-bottom: 2rem;
+      border-left: 3px solid #F472B6;
+      text-align: left;
+    }
+
+    /* Actions & Controls */
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: none;
+      color: #D1D5DB;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: none;
+    }
+
+    /* Night Mode Toggle Style */
+    body.dimmed {
+      background: #030508;
+    }
+
+    body.dimmed .sky {
+      opacity: 0.3;
+    }
+
+    body.dimmed .container {
+      background: rgba(15, 23, 42, 0.4);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Floating Hearts Container */
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .heart-float {
+      position: absolute;
+      font-size: 1.5rem;
+      animation: floatUp 4s linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.5) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Popup Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(244, 114, 182, 0.9);
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border-radius: 30px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background elements -->
+  <div class="sky">
+    <div class="moon"></div>
+  </div>
+  <div class="floating-hearts" id="heartsContainer"></div>
+
+  <!-- Main Card -->
+  <div class="container">
+    <div class="heart-icon" id="mainHeart" title="Klik untuk cinta!">💖</div>
+    <h1>Goodnight Sayangku</h1>
+    <p class="subtitle">Princess & Cantiknya Aku ✨</p>
+
+    <div class="message-box">
+      Selamat tidur ya manisku, bebbykuuu... Istirahat yang nyenyak malam ini. Lepasin semua capeknya. Semoga tidurmu dikelilingi mimpi-mimpi yang indah. Jangan lupa, aku selalu sayang dan kangen kamu selamanya! ❤️
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="kissBtn">
+        <span>😘</span> Kirim Peluk & Cium
+      </button>
+      <button class="btn btn-secondary" id="musicBtn">
+        <span>🎵</span> Putar Lagu Pengantar Tidur
+      </button>
+      <button class="btn btn-secondary" id="dimBtn">
+        <span>🌙</span> Redupkan Lampu Tidur
+      </button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Peluk erat & cium hangat terkirim! 💖</div>
+
+  <script>
+    // Elements
+    const heartsContainer = document.getElementById('heartsContainer');
+    const kissBtn = document.getElementById('kissBtn');
+    const musicBtn = document.getElementById('musicBtn');
+    const dimBtn = document.getElementById('dimBtn');
+    const toast = document.getElementById('toast');
+    const mainHeart = document.getElementById('mainHeart');
+
+    let isDimmed = false;
+    let isPlayingAudio = false;
+    let audioCtx = null;
+    let musicInterval = null;
+
+    // Toast Notification
+    function showToast(message) {
+      toast.innerText = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Create Floating Heart
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-float');
+      
+      const hearts = ['💖', '💗', '💕', '✨', '🌸', '🧸'];
+      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+      
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      heart.style.fontSize = (Math.random() * 1.2 + 1) + 'rem';
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    // Auto spawn background hearts
+    setInterval(createHeart, 800);
+
+    // Interactive Hug & Kiss
+    kissBtn.addEventListener('click', () => {
+      for (let i = 0; i < 15; i++) {
+        setTimeout(createHeart, i * 100);
+      }
+      showToast('Peluk erat & cium hangat sudah terkirim! 🤗✨');
+    });
+
+    mainHeart.addEventListener('click', () => {
+      createHeart();
+      showToast('Kamu princess tersayangku! 👑💖');
+    });
+
+    // Dim Light Toggle
+    dimBtn.addEventListener('click', () => {
+      isDimmed = !isDimmed;
+      document.body.classList.toggle('dimmed', isDimmed);
+      dimBtn.innerHTML = isDimmed ? '<span>☀️</span> Terangkan Lampu' : '<span>🌙</span> Redupkan Lampu Tidur';
+    });
+
+    // Soft Lullaby Generator (Web Audio API)
+    function playLullabyNote(freq, duration) {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+
+      gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.15, audioCtx.currentTime + 0.1);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    // Melodi lembut sederhana (Twinkle / Brahms Lullaby style notes)
+    const notes = [
+      261.63, 261.63, 392.00, 392.00, 440.00, 440.00, 392.00,
+      349.23, 349.23, 329.63, 329.63, 293.66, 293.66, 261.63
+    ];
+    let noteIndex = 0;
+
+    musicBtn.addEventListener('click', () => {
+      if (isPlayingAudio) {
+        clearInterval(musicInterval);
+        isPlayingAudio = false;
+        musicBtn.innerHTML = '<span>🎵</span> Putar Lagu Pengantar Tidur';
+        showToast('Musik dihentikan 🌙');
+      } else {
+        isPlayingAudio = true;
+        musicBtn.innerHTML = '<span>⏸️</span> Hentikan Musik';
+        showToast('Lagu pengantar tidur diputar... 🎶');
+
+        playLullabyNote(notes[noteIndex], 1.5);
+        noteIndex = (noteIndex + 1) % notes.length;
+
+        musicInterval = setInterval(() => {
+          playLullabyNote(notes[noteIndex], 1.5);
+          noteIndex = (noteIndex + 1) % notes.length;
+        }, 1200);
+      }
+    });
+  </script>
+</body>
+</html>
